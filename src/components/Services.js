@@ -1,20 +1,25 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faChild, faSeedling, faRibbon, faChalkboardTeacher, faHandsHelping } from '@fortawesome/free-solid-svg-icons';
+import { faUserGraduate,faBookOpen,faBalanceScale,faBullhorn, faSeedling, faLeaf, faCloudSun,faHeartbeat,faVenusMars,faHandHoldingWater } from '@fortawesome/free-solid-svg-icons';
 
 const services = [
-  { icon: faUser, text: 'Empowerment' },
-  { icon: faChild, text: 'Support for Orphans and Aged' },
-  { icon: faSeedling, text: 'Food Security' },
-  { icon: faRibbon, text: 'HIV/AIDS Support' },
-  { icon: faChalkboardTeacher, text: 'Education Workshops' },
-  { icon: faHandsHelping, text: 'Disaster Support' },
+  { icon: faUserGraduate, text: 'Youth Empowerment' },
+  { icon: faBookOpen, text: 'Education Support' },
+  { icon: faBalanceScale, text: 'Human Rights & Good Governance' },
+  { icon: faBullhorn, text: 'Advocacy' },
+  { icon: faSeedling, text: 'Agriculture & Food Security' },
+  { icon: faLeaf, text: 'Environmental Management' },
+  { icon: faCloudSun, text: 'Climate Change' },
+  { icon: faHeartbeat, text: 'Health, HIV/AIDS & SRH' },
+  { icon: faVenusMars, text: 'Gender Based Violence' },
+  { icon: faHandHoldingWater, text: 'Water, Hygiene & Sanitation' },
+  
 ];
 
 const Services = () => {
   return (
     <section className="text-center my-8">
-      <h2 className="text-2xl font-bold mb-4">OUR SERVICES TO PROVIDE</h2>
+      <h2 className="text-2xl font-bold mb-4"> ACTIVITIES</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service, index) => (
           <div key={index} className="bg-blue-200 p-4 rounded-md shadow-md flex items-center justify-center space-x-4">
@@ -24,6 +29,7 @@ const Services = () => {
         ))}
       </div>
     </section>
+   
   );
 };
 

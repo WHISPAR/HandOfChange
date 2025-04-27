@@ -17,10 +17,22 @@ const Footer = () => {
         <a href="#" className="hover:text-gray-200">
           <FontAwesomeIcon icon={faTelegram} size="1x" />
         </a>
-        <a href="#" className="hover:text-gray-200">
+        <a href="handsofchangef@gmail.com" className="hover:text-gray-200">
           <FontAwesomeIcon icon={faEnvelope} size="1x" />
         </a>
+        
       </div>
+      <p>Cell: 888 323 706 / 0881 286 843</p>
+  <p>Email: handsofchangef@gmail.com</p>
+      <div className="text-left text-top">
+  <p>Gadaga Trading Center</p>
+  <p>Singano Village</p>
+  <p>Off Chileka Airport Road</p>
+  <p>PO Box 30143, Blantyre</p>
+  <p>Malawi, Southern Africa</p>
+ 
+</div>
+ 
     </footer>
   );
 };
