@@ -1,8 +1,10 @@
 import React from 'react';
 import img1 from './img1.jpeg';
 import img2 from './img2.jpeg';
+import img3 from './img3.jpeg';
 import img4 from './img4.jpeg';
 import img5 from './img5.jpeg';
+import img6 from './img6.jpeg';
 
 const Section = ({ title, image, children, bg = 'bg-blue-50' }) => (
   <section className={`${bg} p-6 rounded-xl shadow-md my-8 mx-auto max-w-6xl`}>
@@ -37,7 +39,7 @@ const Mission = () => {
         </p>
       </Section>
 
-      <Section title="Objectives" bg="bg-blue-50" image={img4}>
+      <Section title="Objectives" bg="bg-blue-50" image={img3}>
         <ol className="list-decimal space-y-3 pl-6">
           <li>To build capacity of the poor and disadvantaged in areas of psychosocial support, health, human rights, income generation, and agriculture.</li>
           <li>To mobilize resources for implementing social self-help programs for PLHIV members and youth.</li>
@@ -45,7 +47,7 @@ const Mission = () => {
         </ol>
       </Section>
 
-      <Section title="Core Values" bg="bg-green-100" image={img5}>
+      <Section title="Core Values" bg="bg-green-100" image={img4}>
         <h3 className="text-lg font-semibold mb-4">Our work is guided by the following values:</h3>
         <ul className="list-disc pl-6 space-y-3">
           <li><strong>Mutual respect:</strong> Everyone deserves respect, regardless of condition.</li>
@@ -57,7 +59,7 @@ const Mission = () => {
         </ul>
       </Section>
 
-      <Section title="Thematic Areas" bg="bg-purple-100" image={img4}>
+      <Section title="Thematic Areas" bg="bg-purple-100" image={img5}>
         <ol className="list-decimal space-y-4 pl-6">
           <li><strong>Agriculture and Food Security:</strong> Supporting sustainable farming and livestock.</li>
           <li><strong>Sustainable Livelihoods:</strong> Promoting small business startups and micro-loans.</li>
@@ -72,7 +74,7 @@ const Mission = () => {
         </ol>
       </Section>
 
-      <Section title="Organizational Strengths" bg="bg-indigo-100" image={img2}>
+      <Section title="Organizational Strengths" bg="bg-indigo-100" image={img6}>
         <div className="space-y-6">
           <div>
             <h3 className="text-xl font-semibold mb-1">Assets:</h3>
