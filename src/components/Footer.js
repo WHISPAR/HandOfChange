@@ -74,13 +74,13 @@ const Footer = () => {
           © {new Date().getFullYear()} Hands of Change Foundation
         </p>
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-gray-300">
+          <a href="https://www.facebook.com/handsofchangefoundation" className="hover:text-gray-300">
             <FontAwesomeIcon icon={faFacebook} />
           </a>
-          <a href="#" className="hover:text-gray-300">
+          <a href="HandOfChange" className="hover:text-gray-300">
             <FontAwesomeIcon icon={faTelegram} />
           </a>
-          <a href="#" className="hover:text-gray-300">
+          <a href="https://wa.me/265881286843" className="hover:text-gray-300">
             <FontAwesomeIcon icon={faWhatsapp} />
           </a>
         </div>
