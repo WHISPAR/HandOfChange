@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faWhatsapp,
@@ -8,79 +8,244 @@ import {
 import { faPhone, faLocationDot, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: ''
+  });
+  const [subscriptionStatus, setSubscriptionStatus] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim()) {
+      setSubscriptionStatus('Please fill in all fields');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setSubscriptionStatus('Please enter a valid email address');
+      return;
+    }
+
+    // Simulate API call
+    setSubscriptionStatus('Subscribing...');
+    
+    setTimeout(() => {
+      // Here you would typically send data to your backend
+      console.log('Subscription data:', formData);
+      setSubscriptionStatus('Thank you for subscribing!');
+      setFormData({ name: '', email: '' });
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setSubscriptionStatus(''), 3000);
+    }, 1000);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handlePhoneClick = () => {
+    window.open('tel:+265881286843');
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:info@handsofchangefoundation.com';
+  };
+
+  const handleLocationClick = () => {
+    // Open in Google Maps
+    const address = encodeURIComponent('Gadaga Trading center, Singano village, Off Chileka Airport Road, Blantyre, Malawi, Southern Africa');
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`);
+  };
+
   return (
-    <footer className="bg-blue-600 text-white px-6 py-10">
+    <footer className="bg-gradient-to-br from-blue-700 to-blue-900 text-white px-6 py-12">
       {/* Top Section */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Newsletter */}
-        <div>
-          <h2 className="text-xl font-bold mb-4">
+        <div className="md:col-span-2">
+          <h2 className="text-2xl font-bold mb-4">
             Subscribe Newsletter<br />For Latest Updates
           </h2>
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full rounded-full px-4 py-2 mb-3 text-black"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full rounded-full px-4 py-2 mb-3 text-black"
-          />
-          <button className="bg-orange-500 w-full py-2 rounded-full font-bold">
-            SUBSCRIBE
-          </button>
+          <form onSubmit={handleSubscribe} className="space-y-3">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="w-full rounded-full px-6 py-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full rounded-full px-6 py-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200"
+            />
+            <button 
+              type="submit"
+              className="bg-orange-500 hover:bg-orange-600 w-full py-3 rounded-full font-bold transition duration-300 transform hover:scale-105"
+            >
+              SUBSCRIBE
+            </button>
+            {subscriptionStatus && (
+              <p className={`text-sm text-center mt-2 ${
+                subscriptionStatus.includes('Thank you') 
+                  ? 'text-green-300' 
+                  : 'text-orange-300'
+              }`}>
+                {subscriptionStatus}
+              </p>
+            )}
+          </form>
         </div>
+
         {/* Quick Links */}
         <div>
-          <h2 className="text-lg font-bold mb-2 border-b-2 border-black-500 inline-block">
+          <h2 className="text-xl font-bold mb-4 border-b-2 border-orange-500 inline-block pb-1">
             GET TO KNOW US
           </h2>
-          <ul className="space-y-1 mt-2">
-            <li>About Us</li>
-            <li>Partnerships</li>
-            <li>Projects</li>
-            <li>Resources</li>
-            <li>Privacy Policy</li>
+          <ul className="space-y-2 mt-4">
+            <li>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                About Us
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => scrollToSection('partners')}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                Partnerships
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => scrollToSection('projects')}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                Projects
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => scrollToSection('resources')}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                Resources
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => window.open('/privacy-policy', '_blank')}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                Privacy Policy
+              </button>
+            </li>
           </ul>
         </div>
 
         {/* Contact Us */}
         <div>
-          <h2 className="text-lg font-bold mb-2 border-b-2 border-yellow-500 inline-block">
+          <h2 className="text-xl font-bold mb-4 border-b-2 border-yellow-500 inline-block pb-1">
             Contact Us
           </h2>
-          <ul className="space-y-3 mt-2 text-sm">
-            <li>
-              <FontAwesomeIcon icon={faPhone} className="mr-2" />
-              +265-881-286-843
+          <ul className="space-y-4 mt-4 text-sm">
+            <li className="flex items-start">
+              <FontAwesomeIcon 
+                icon={faPhone} 
+                className="mr-3 mt-1 text-orange-400 cursor-pointer" 
+                onClick={handlePhoneClick}
+              />
+              <button 
+                onClick={handlePhoneClick}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                +265-881-286-843
+              </button>
             </li>
-            <li>
-              <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-              HandsofChangeFoundation.com
+            <li className="flex items-start">
+              <FontAwesomeIcon 
+                icon={faEnvelope} 
+                className="mr-3 mt-1 text-orange-400 cursor-pointer"
+                onClick={handleEmailClick}
+              />
+              <button 
+                onClick={handleEmailClick}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                info@handsofchangefoundation.com
+              </button>
             </li>
-            <li>
-              <FontAwesomeIcon icon={faLocationDot} className="mr-2" />
-              Gadaga Trading center,Singano village ,Off Chileka Airport Road ,
-              Blantyre,Malawi, Southern Africa
+            <li className="flex items-start">
+              <FontAwesomeIcon 
+                icon={faLocationDot} 
+                className="mr-3 mt-1 text-orange-400 cursor-pointer"
+                onClick={handleLocationClick}
+              />
+              <button 
+                onClick={handleLocationClick}
+                className="hover:text-orange-300 transition duration-200 text-left"
+              >
+                Gadaga Trading center, Singano village,<br />
+                Off Chileka Airport Road, Blantyre,<br />
+                Malawi, Southern Africa
+              </button>
             </li>
           </ul>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-10 border-t border-gray-500 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
-        <p className="mb-4 md:mb-0">
-          © {new Date().getFullYear()} Hands of Change Foundation
+      <div className="max-w-7xl mx-auto mt-12 border-t border-blue-500 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
+        <p className="mb-4 md:mb-0 text-blue-200">
+          © {new Date().getFullYear()} Hands of Change Foundation. All rights reserved.
         </p>
-        <div className="flex space-x-4">
-          <a href="https://www.facebook.com/handsofchangefoundation" className="hover:text-gray-300">
+        <div className="flex space-x-6">
+          <a 
+            href="https://www.facebook.com/handsofchangefoundation" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-orange-300 transition duration-200 text-lg"
+            aria-label="Facebook"
+          >
             <FontAwesomeIcon icon={faFacebook} />
           </a>
-          <a href="HandOfChange" className="hover:text-gray-300">
+          <a 
+            href="https://t.me/HandOfChange" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-orange-300 transition duration-200 text-lg"
+            aria-label="Telegram"
+          >
             <FontAwesomeIcon icon={faTelegram} />
           </a>
-          <a href="https://wa.me/265881286843" className="hover:text-gray-300">
+          <a 
+            href="https://wa.me/265881286843" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-orange-300 transition duration-200 text-lg"
+            aria-label="WhatsApp"
+          >
             <FontAwesomeIcon icon={faWhatsapp} />
           </a>
         </div>
